@@ -8,7 +8,6 @@
         if($user['EMAIL'] && $user['PASSWORD']){
             $_SESSION['email']=$user['EMAIL'];
             $_SESSION['password']=$user['PASSWORD'];
-            echo "<p class='mesage_error' >Ошибка выборки БД.</p>";
         }else{
             echo "<p class='mesage_error' >Ошибка выборки БД.</p>";
         }
@@ -16,8 +15,6 @@
         unset($_SESSION['email']);
         unset($_SESSION['password']);
     }
-    echo "Мейл:"; var_dump($_SESSION['email']); echo "</br>";
-    echo "Пароль:"; var_dump($_SESSION['password']); echo "</br>";
     if($_SESSION['email'] && $_SESSION['password']){
         header("Location: pages/main.php");
     }else{

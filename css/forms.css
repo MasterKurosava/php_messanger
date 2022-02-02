@@ -1,0 +1,106 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+.background{
+    z-index: 10;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.add_window,.group_window{
+    z-index: 20;
+    height: fit-content;
+    min-width: 600px;
+    background-color: #373737;
+    padding: 20px 50px 40px;
+    border-radius: 10px;
+}
+.add_title, .group_title {
+    width: 100%;
+    text-align: center;
+    font-size: 23px;
+    margin-bottom: 20px;
+}
+.add_inputContainer, .group_inputContainer{
+    display: flex;
+    width: 90%;
+    height: 40px;
+    margin: 0 auto;
+}
+.add_input, .group_input-name{
+    color:black;
+    width: 100%;
+    height: 100%;
+    font-size: 18px;
+    border: 0;
+    outline: 0;
+    padding: 0 10px;
+    border-radius: 10px;
+}
+.add_usersContainer, .group_usersContainer{
+    border: 1px solid #1b1b1b;
+    width: 90%;
+    margin: 20px auto;
+    height: 300px;
+    max-height: 300px;
+}
+.add_usersList::-webkit-scrollbar{width: 6px }
+.add_usersList::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 10px;
+}
+.add_usersList::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background: linear-gradient(180deg, #47fb00, #00ea89);
+}
+.add_usersList{
+    width: 100%;
+    list-style: none;
+    max-height: inherit;
+    overflow-y: auto;
+}
+.add_userItem{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+    padding-left: 20px;
+}
+
+.add_userItem:hover, .add_userItem.selected{
+    background-color: #1b1b1b;
+}
+.add_userItem.notFound:hover{
+    background-color: transparent;
+}
+.add_userItem:hover ~ .add_userItem{
+    background-color: transparent!important;
+}
+.add_btn, .group_btn{
+    width: 200px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: #1b1b1b;
+    margin: 20px auto 0 auto;
+    border-radius: 10px;
+    color:white;
+}
+.add_btn.disabled, .group_btn.disabled{
+    cursor:auto;
+    background-color: #252525;
+    color:#373737;
+}

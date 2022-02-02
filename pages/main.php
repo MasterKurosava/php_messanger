@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Мурчим под ушко</title>
+    <title>Мессенджер</title>
     <link href="../css/main.css" rel="stylesheet" type="text/css">
+    <link href="../css/forms.css" rel="stylesheet" type="text/css">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8 " />
   </head>
   <body>
@@ -14,12 +15,8 @@
                     <div class="add_contact"><span class="add_plus">+</span> Добавить контакт</div>
                     <div class="contacts_container">
                         <ul class="contacts_list">
-                            <li class="contact_item"><img  class="contact_profile" src="../img/enoske.jpg">Куросава</li>
-                            <li class="contact_item"><img  class="contact_profile" src="../img/enoske.jpg">mihailakalachiov@mail.ru</li>
-                            <li class="contact_item">Третий</li>
-                            <li class="contact_item">Четвертый</li>
-                            <li class="contact_item">Mr.kurosava</li>
-
+                            <?php require_once "../php_modules/userWork/getContacts.php" ?>
+                            <!-- <li class="contact_item"><img  class="contact_profile" src="../img/enoske.jpg">Куросава</li> -->
                         </ul>
                     </div>
                 </div> 
@@ -28,10 +25,7 @@
                     <div class="add_group"><span class="add_plus">+</span> Добавить групповой чат</div>
                     <div class="groups_container">
                         <ul class="groups_list">
-                            <li class="contact_item">Первый чат</li>
-                            <li class="contact_item">Второй чат</li>
-                            <li class="contact_item">Третий чат</li>
-                            <li class="contact_item">Четвертый чат</li>
+                            <!-- <li class="group_item">Первый чат</li> -->
                             
                         </ul>
                     </div>
@@ -86,28 +80,8 @@
             </div>
         </div>
     </div>
-    <script src="js/script.js"></script>
-    <script src="../socket.io/socket.io.js"></script>
-    <script>
-        // var socket = io();
-        // var form = document.getElementById('form');
-        // var input = document.getElementById('input');
-
-        // form.addEventListener('submit', function(e){
-        //     e.preventDefault();
-        //     if(input.value){
-        //         socket.emit('chat message', input.value);
-        //         input.value='';
-        //     }
-        // })
-
-        // socket.on('chat message', function(msg) {
-        //     var item = document.createElement('li');
-        //     item.textContent = msg;
-        //     messages.appendChild(item);
-        //     window.scrollTo(0, document.body.scrollHeight);
-        // });
-    </script>
-
+    <script type="module"  src="../js/main.js"></script>
+    <script type="module"  src="../js/contacts.js"></script>
+    <!-- <script type="module"  src="../js/groups.js"></script> -->
   </body> 
 </html>
