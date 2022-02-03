@@ -80,8 +80,12 @@
 
 .add_userItem:hover, .add_userItem.selected{
     background-color: #1b1b1b;
+    box-shadow: none!important;
 }
-.add_userItem.notFound:hover{
+.notFound{
+    text-align: center;
+}
+.notFound:hover{
     background-color: transparent;
 }
 .add_userItem:hover ~ .add_userItem{
@@ -104,3 +108,20 @@
     background-color: #252525;
     color:#373737;
 }
+.group_usersList{
+    width: 100%;
+    list-style: none;
+}
+.create_label{
+    cursor: pointer;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 40px 0 10px;
+}
+.createGroup_userItem:hover, .createGroup_userItem.selected{
+    background-color: #1b1b1b;
+}
+

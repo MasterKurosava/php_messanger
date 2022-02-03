@@ -1,5 +1,6 @@
-import {showAddWindow, showGroupWindow, hideWindow} from "./formsWork.js";
-import debounce from "./utilites/debounce.js";
+import {showAddWindow} from "./formsWork.js";
+import debounce from "../utilites/debounce.js";
+import { openPrivateChat } from "../main.js";
 
 const addContanctBtn=document.querySelector('.add_contact');
 const contactsList=document.querySelector('.contacts_list');
@@ -10,7 +11,7 @@ addContanctBtn.addEventListener('click', ()=>{
     [addInput,searchList,addBtn]=showAddWindow();
     //фильтруем пользователей при вводе
     addInput.addEventListener('input', debounce(()=>{
-        debounce(getUsers('../php_modules/userWork/findUser.php', addInput.value))
+        getUsers('../php_modules/userWork/findUser.php', addInput.value)
     },500))    
 })
 
@@ -23,6 +24,7 @@ function getUsers(url, data){
     })
     .then(response=>{return response.json()})
     .then(data=>placeContacts(data))
+    .catch(err=>placeContacts([]))
  };
 
 
@@ -51,6 +53,7 @@ function setContact(e){
     searchList.childNodes.forEach(user=>user.classList.remove('selected'))
     target.classList.add('selected');
     addBtn.classList.remove('disabled');
+    addBtn.removeEventListener('click',btnListener);
     addBtn.addEventListener('click', btnListener=()=>addContact(target));
 }
 
@@ -64,11 +67,18 @@ function addContact(user){
     })
     .then(response=>{return response.json()})
     .then((data)=>{
-        const newContact=document.createElement('li');
-        newContact.className="contact_item";
-        newContact.id="user_"+data;
-        newContact.innerHTML=user.textContent;
-        contactsList.appendChild(newContact);
+        if(data){
+            const newContact=document.createElement('li');
+            newContact.className="contact_item";
+            newContact.id="user_"+data.userID;
+            newContact.setAttribute('private',data.chatID)
+            newContact.innerHTML=user.textContent;
+            newContact.addEventListener('click',(e)=>openPrivateChat(e))
+            contactsList.appendChild(newContact);
+        }
+    })
+    .catch(err=>{
+        alert("Что то пошло не так :(")
     })
 
 }

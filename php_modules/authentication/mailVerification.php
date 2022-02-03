@@ -33,7 +33,9 @@
         $sql="SELECT * FROM users WHERE EMAIL='".$_SESSION['verifyEmail']."'";
         $user=$db->query($sql);
         $user=$user->fetch();
-
+        if(!$_SESSION['verifyEmail']){
+            header('Location: ../../pages/signin.php');
+        }
         if($_GET['token'] == $user['TOKEN']){  
             echo '<div class="emailCheck_container">E-mail подтвержден. Пожалуйста, подождите.</div>';
             unset($_SESSION['verifyEmail']);

@@ -23,12 +23,13 @@
 .profile_container{
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     border-radius: 5px;
     border: 1px solid white;
     width: 70%;
     padding: 30px 100px;
     min-width: 1000px;
-    height: fit-content;
+    min-height: fit-content;
     margin: 50px auto;
 }
 .profile_header{
@@ -41,6 +42,9 @@
     font-size: 23px;
 }
 .profile_photoContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 40%;
     height: 100%;
 }
@@ -57,7 +61,26 @@
     display: none;
 }
 .change_photo{
+    width: 300px;
     margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+.send_photo{
+    cursor: pointer;
+    padding: 10px;
+    border:0;
+    outline: 0;
+    width: 100px;
+    background-color: #373737;
+    color:white;
+    margin-left: 20px;
+    border-radius: 5px;
+}
+.send_photo.disabled{
+    cursor:auto;
+    color:#4e4e4e;
+    background-color: #1f1f1f;
 }
 .change_photo label{
     display: block;
@@ -67,25 +90,31 @@
     color:var(--green_text);
     background-color: #373737;
     padding: 10px;
-    margin-left: 80px;
+    font-size: 14px;
+}
+.file_name{
+    align-self: center;
+    margin: 10px auto;
     font-size: 14px;
 }
 .change_photo label:hover{ animation: hoverBtn 0.5s forwards ease;}
-.profile_userdata{ width: 60% }
+.profile_userdata{ 
+    width: 55%;
+    height: 100%;
+}
 .user_data{ width: 100% }
 
 .profile_label{
     display: flex;
-    align-items: center;
-    padding: 20px;
+    align-items: flex-end;
+    padding: 20px 20px 5px 20px;
     border-bottom: 1px solid white;
     height: 60px;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 2fr;
 }
-
-.user_login{
+.profile_label input{
     cursor: pointer;
     text-align: end;
     background-color: transparent;
@@ -96,13 +125,16 @@
 .profile_redacticting{
     display: block;
     width: fit-content;
+    text-align: center;
     cursor: pointer;
     border-radius: 5px;
     color:var(--green_text);
     background-color: #373737;
+    width: 220px;
     padding: 10px;
-    margin: 30px 0 30px auto;
+    margin: 40px 0 30px auto;
 }
+
 .profile_redacticting:hover{
     animation: hoverBtn 0.5s forwards ease;
 }
@@ -110,4 +142,17 @@
     to{
         box-shadow: 0 0 10px 1px #00d200;
     }
+}
+.error{
+    position: relative;
+    border-bottom: 1px solid rgb(235, 0, 0);
+}
+.error::before{
+    display: inline-block;
+    position: absolute;
+    content: "Пароль должен состоять только из букв и цифр";
+    color:rgb(235, 0, 0);
+    top:0;
+    right: 0;
+    font-size: 13px;
 }

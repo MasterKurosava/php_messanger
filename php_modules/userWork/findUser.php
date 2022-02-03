@@ -11,26 +11,25 @@
     $users=$users->fetchAll(PDO::FETCH_ASSOC);
 
     $currentContacts=$db->query("
-    SELECT ID, CONTACTS_LIST 
+    SELECT ID, PRIVATE_CHAT_LIST 
     FROM users 
     WHERE EMAIL = '".$_SESSION['email']."'
     ");
 
     $currentContacts=$currentContacts->fetch(PDO::FETCH_ASSOC);
     $id=$currentContacts['ID'];
-    $currentContacts=json_decode($currentContacts['CONTACTS_LIST']);
+    $currentContacts=json_decode($currentContacts['PRIVATE_CHAT_LIST'],true);
     $filter=array();
     
     for ($i=0; $i <= count($users); $i++) { 
         $valid=true;
         for ($j=0; $j <= count($currentContacts); $j++) { 
-           if($users[$i]['ID']==$currentContacts[$j] || $users[$i]['ID']==$id){
+           if($users[$i]['ID']==$currentContacts[$j]['userID'] || $users[$i]['ID']==$id){
             $valid=false;
            }
         }
         if($valid){ $filter[]=$users[$i];}
     }
-    
     if(count($filter)>0){
         echo json_encode(array_values($filter));
     }else{

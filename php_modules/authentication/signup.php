@@ -15,11 +15,6 @@
         echo "Почта занята";
         exit();
     }else{
-        if(strlen($login)<5 || strlen($login)>40){ 
-            echo "Длина логина должна быть от 5 до 40 символов";
-            $errors=true;
-            exit();
-        }
         if(strlen($password) < 8){ 
             echo "Пароль должен содежать минимум 8 символов";
             $errors=true;
@@ -53,8 +48,8 @@
         $hash=md5($password)."liza";
         $sqlAdd = "
             INSERT INTO users
-            (LOGIN, PASSWORD, EMAIL, CONTACTS_LIST_ID, GROUP_CHAT_LIST_ID,PRIVATE_CHAT_LIST_ID, IMG_PROFILE_ID, VERIFICATION,TOKEN)
-            VALUES (:LOGIN, :PASSWORD, :EMAIL,:CONTACTS_LIST_ID, :GROUP_CHAT_LIST_ID,:PRIVATE_CHAT_LIST_ID, :IMG_PROFILE_ID, :VERIFICATION,:TOKEN)
+            (LOGIN, PASSWORD, EMAIL, GROUP_CHAT_LIST, PRIVATE_CHAT_LIST, IMG_PROFILE, VERIFICATION,TOKEN)
+            VALUES (:LOGIN, :PASSWORD, :EMAIL, :GROUP_CHAT_LIST, :PRIVATE_CHAT_LIST, :IMG_PROFILE, :VERIFICATION,:TOKEN)
         ";
         $statement = $db->prepare($sqlAdd);
         $statement->execute(
@@ -62,10 +57,9 @@
             ':LOGIN'  => $_POST['login'],
             ':PASSWORD' => $hash,
             ':EMAIL' => $_POST['email'],
-            ':CONTACTS_LIST_ID' => 1,
-            ':GROUP_CHAT_LIST_ID' => 1,
-            ':PRIVATE_CHAT_LIST_ID' => 1,
-            ':IMG_PROFILE_ID' => 1,
+            ':GROUP_CHAT_LIST' => '[]',
+            ':PRIVATE_CHAT_LIST' => '[]',
+            ':IMG_PROFILE' => 1,
             ':VERIFICATION' => 0,
             ':TOKEN' => $token
             )
