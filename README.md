@@ -1,7 +1,7 @@
 # php_messanger
 Пароли у всех: 
 - 123123123
-Уже созданные почты:
+--Уже созданные почты:
 - liza@mail.ru
 - dima@mail.ru
 - skiril@mail.ru
